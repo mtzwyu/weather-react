@@ -14,3 +14,101 @@ h1 { text-align: center; margin-bottom: 1rem; }
 .forecast img { width: 50px; height: 50px; }
 .error { background: #e43f5a; padding: .6rem; border-radius: 6px; margin-bottom: 1rem; text-align: center; }
 .loading { text-align: center; }
+/* ========== ANIMATION & TRANSITION ========== */
+:root {
+  --transition: all .35s cubic-bezier(.4, 0, .2, 1);
+  --fade-in: fadeIn .6s ease forwards;
+}
+
+/* 1. Loading pulse */
+/* .loading {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 3px solid rgba(255, 255, 255, .3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+} */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 2. Fade-in khi có dữ liệu */
+.current,
+.forecast {
+  opacity: 0;
+  animation: var(--fade-in);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Hover mượt button & card */
+.search button,
+.forecast .card {
+  transition: var(--transition);
+}
+.search button:hover {
+  background: #ffffff;
+  color: #185a9d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+}
+.forecast .card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, .35);
+}
+
+/* 4. Number “count-up” effect */
+.temp {
+  display: inline-block;
+  animation: countUp .8s ease-out;
+}
+@keyframes countUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 5. Gradient background chuyển màu nhẹ liên tục */
+body {
+  background: linear-gradient(-45deg, #43cea2, #185a9d, #4f46e5, #c43bad);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* ====== LOADING CENTER + SCALE ====== */
+.spinner-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.spinner {
+  width: 48px;               /* to hơn 1 chút */
+  height: 48px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite, scaleIn .3s ease-out;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes scaleIn {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
