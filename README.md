@@ -1,12 +1,32 @@
-# React + Vite
+# weather-react
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ứng dụng thời tiết đơn giản built with Vite + React, dữ liệu từ WeatherAPI.
 
-Currently, two official plugins are available:
+## Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Trực tiếp: `https://&lt;your-username&gt;.github.io/weather-react`
 
-## Expanding the ESLint configuration
+## Tính năng
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Xem thời tiết hiện tại (nhiệt độ, icon, độ ẩm, gió)
+- Dự báo 5 ngày tiếp theo
+- Hỗ trợ Tiếng Việt (lang=vi)
+- Giao diện responsive, gradient nền động
+- Không cần Redux, chỉ dùng React Hook
+
+## Cài đặt & Chạy local
+
+```bash
+# 1. Clone
+git clone https://github.com/&lt;your-username&gt;/weather-react.git
+cd weather-react
+
+# 2. Cài dependencies
+npm install
+
+# 3. Tạo file .env.local ở thư mục gốc
+echo "VITE_WEATHERAPI_KEY=YOUR_WEATHERAPI_KEY" &gt; .env.local
+
+# 4. Chạy
+npm run dev
+# Mở http://localhost:5173
