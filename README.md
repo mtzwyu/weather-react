@@ -4,7 +4,7 @@
 
 ## Demo
 
-Trực tiếp: `https://&lt;mtzwyu&gt;.github.io/weather-react`
+Trực tiếp: `https://mtzwyu.github.io/weather-react`
 
 ## Tính năng
 
@@ -18,7 +18,7 @@ Trực tiếp: `https://&lt;mtzwyu&gt;.github.io/weather-react`
 
 ```bash
 # 1. Clone
-git clone https://github.com/&lt;mtzwyu&gt;/weather-react.git
+git clone https://github.com/mtzwyu/weather-react.git
 cd weather-react
 
 # 2. Cài dependencies
