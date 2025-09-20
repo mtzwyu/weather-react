@@ -1,31 +1,32 @@
+// src/hooks/useWeather.js
 import { useState, useCallback } from 'react';
 import { getCurrent, getForecast } from '../api/weather';
 
 export default function useWeather() {
-  const [current, setCurrent]   = useState(null);
+  const [current, setCurrent] = useState(null);
   const [forecast, setForecast] = useState(null);
-  const [loading, setLoading]   = useState(false);
-  const [error, setError]       = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    const fetchWeather = useCallback(async (city) => {
-    setLoading(true); setError(null);
+  const fetchWeather = useCallback(async (city) => {
+    setLoading(true);
+    setError(null);
     try {
-        console.log('🔍 calling API for', city);
-        const [c, f] = await Promise.all([
-        getCurrent(city),
-        getForecast(city)
-        ]);
-        console.log('✅ current', c);
-        console.log('✅ forecast', f);
-        setCurrent(c.current || c);     // WeatherAPI trả về obj gốc
-        setForecast(f.forecast || f);
+      const [c, f] = await Promise.all([getCurrent(city), getForecast(city)]);
+
+      /* ---- bắt lỗi không tìm thấy thành phố ---- */
+      if (c.error?.code === 1006 || f.error?.code === 1006) {
+        throw new Error('Không tìm thấy thành phố. Vui lòng nhập thành phố hoặc thủ đô lớn của nước đó.');
+      }
+
+      setCurrent(c.current);
+      setForecast(f.forecast);
     } catch (e) {
-        console.error('❌ API failed', e);
-        setError(e.message || 'Lỗi không xác định');
+      setError(e.message || 'Lỗi không xác định');
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-    }, []);
+  }, []);
 
   return { current, forecast, loading, error, fetchWeather };
 }

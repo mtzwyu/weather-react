@@ -11,7 +11,12 @@ function App() {
       <h1>🌤 Ứng dụng thời tiết</h1>
       <SearchBox onSearch={fetchWeather} />
 
-      {error && <p className="error">{error}</p>}
+      {error && (
+        <p className="error">
+          {error} <br />
+          <small>Ví dụ: Hanoi, Tokyo, London, Copenhagen...</small>
+        </p>
+      )}
       {loading && <p className="loading">Đang tải…</p>}
 
       {current && <CurrentWeather data={current} />}
